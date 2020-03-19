@@ -1,9 +1,17 @@
 package com.mhamza007.forecast
 
+import android.app.Activity
 import android.app.Application
+import android.content.Context
+import androidx.preference.PreferenceManager
+import com.google.android.gms.location.LocationServices
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.mhamza007.forecast.data.db.database.ForecastDatabase
 import com.mhamza007.forecast.data.network.*
+import com.mhamza007.forecast.data.provider.LocationProvider
+import com.mhamza007.forecast.data.provider.LocationProviderImpl
+import com.mhamza007.forecast.data.provider.UnitProvider
+import com.mhamza007.forecast.data.provider.UnitProviderImpl
 import com.mhamza007.forecast.data.repository.ForecastRepository
 import com.mhamza007.forecast.data.repository.ForecastRepositoryImpl
 import com.mhamza007.forecast.ui.weather.current.CurrentWeatherViewModelFactory
@@ -25,6 +33,9 @@ class ForecastApplication : Application(), KodeinAware {
         bind() from singleton {
             instance<ForecastDatabase>().currentWeatherDao()
         }
+        bind() from singleton {
+            instance<ForecastDatabase>().weatherLocationDao()
+        }
         bind<ConnectivityInterceptor>() with singleton {
             ConnectivityInterceptorImpl(instance())
         }
@@ -34,11 +45,20 @@ class ForecastApplication : Application(), KodeinAware {
         bind<WeatherNetworkDataSource>() with singleton {
             WeatherNetworkDataSourceImpl(instance())
         }
+        bind() from provider {
+            LocationServices.getFusedLocationProviderClient(instance<Context>())
+        }
+        bind<LocationProvider>() with singleton {
+            LocationProviderImpl(instance(), instance())
+        }
         bind<ForecastRepository>() with singleton {
-            ForecastRepositoryImpl(instance(), instance())
+            ForecastRepositoryImpl(instance(), instance(), instance(), instance())
+        }
+        bind<UnitProvider>() with singleton {
+            UnitProviderImpl(instance())
         }
         bind() from provider {
-            CurrentWeatherViewModelFactory(instance())
+            CurrentWeatherViewModelFactory(instance(), instance())
         }
     }
 
@@ -46,5 +66,6 @@ class ForecastApplication : Application(), KodeinAware {
         super.onCreate()
 
         AndroidThreeTen.init(this)
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false)
     }
 }

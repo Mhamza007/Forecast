@@ -92,6 +92,9 @@ dependencies {
     // New Material Design
     implementation "com.google.android.material:material:1.1.0"
 
+    // Dexter Permission
+    implementation 'com.karumi:dexter:6.0.2'
+
     //test
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
