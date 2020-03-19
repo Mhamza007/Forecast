@@ -3,9 +3,9 @@ Forecast Android Application using WeatherStack API. Built using MVVM and Androi
 
 Following ResoCoder's Playlist about Apixu Weather Api I've developed the application using current weatherstack.
 In this application users can 
-  - see the current weather
+  - See the current weather
   - Use device location or type custom location
-  - change between metric or imperial units
+  - Change between metric or imperial units
 
 I have completed 10 of 14 parts of the playlist because getting 7 days forecast in not free anymore. So that is an empty screen. :(
 
