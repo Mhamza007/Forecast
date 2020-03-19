@@ -13,6 +13,7 @@ class LifecycleBoundLocationManager(
     private val fusedLocationProviderClient: FusedLocationProviderClient,
     private val locationCallback: LocationCallback
 ): LifecycleObserver {
+
     init {
         lifecycleOwner.lifecycle.addObserver(this)
     }

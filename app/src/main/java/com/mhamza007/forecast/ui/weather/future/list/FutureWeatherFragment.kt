@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 
 import com.mhamza007.forecast.R
 
@@ -27,7 +28,7 @@ class FutureWeatherFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(FutureWeatherViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(FutureWeatherViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

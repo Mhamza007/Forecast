@@ -1,20 +1,12 @@
 package com.mhamza007.forecast.data.provider
 
 import android.Manifest
-import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
 import android.util.Log
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.FusedLocationProviderClient
-import com.karumi.dexter.Dexter
-import com.karumi.dexter.DexterBuilder
-import com.karumi.dexter.MultiplePermissionsReport
-import com.karumi.dexter.PermissionToken
-import com.karumi.dexter.listener.PermissionRequest
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.mhamza007.forecast.data.db.entity.WeatherLocation
 import com.mhamza007.forecast.internal.LocationPermissionNotGrantedException
 import com.mhamza007.forecast.internal.asDeferredAsync

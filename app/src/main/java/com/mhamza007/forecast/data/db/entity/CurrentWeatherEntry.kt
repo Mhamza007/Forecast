@@ -2,7 +2,7 @@ package com.mhamza007.forecast.data.db.entity
 
 import androidx.room.*
 import com.google.gson.annotations.SerializedName
-import com.mhamza007.forecast.internal.Convertors
+import com.mhamza007.forecast.internal.Converters
 
 const val CURRENT_WEATHER_ID = 0
 
@@ -14,11 +14,11 @@ data class CurrentWeatherEntry(
     val weatherCode: Double,
 
     @SerializedName("weather_icons")
-    @TypeConverters(Convertors::class)
+    @TypeConverters(Converters::class)
     val weatherIcons: List<String>,
 
     @SerializedName("weather_descriptions")
-    @TypeConverters(Convertors::class)
+    @TypeConverters(Converters::class)
     val weatherDescriptions: List<String>,
 
     @SerializedName("wind_speed")

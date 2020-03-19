@@ -100,13 +100,17 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
     private fun updateTemperatures(temperature: Double, feelsLikeTemp: Double) {
         val unitAbbreviation = chooseLocalizedUnitAbbreviation("°C", "°F")
         if (unitAbbreviation == "°C") {
-            textView_temperature.text = "$temperature$unitAbbreviation"
-            textView_feels_like_temperature.text = "Feels Like $feelsLikeTemp$unitAbbreviation"
+            val metricTemperatureText = "$temperature$unitAbbreviation"
+            textView_temperature.text = metricTemperatureText
+            val metricFeelsLikeTemperatureText = "Feels Like $feelsLikeTemp$unitAbbreviation"
+            textView_feels_like_temperature.text = metricFeelsLikeTemperatureText
         } else if (unitAbbreviation == "°F") {
             val tempInImperial = (temperature * 9 / 5) + 32
-            textView_temperature.text = "${decimalFormat.format(tempInImperial)}$unitAbbreviation"
-            textView_feels_like_temperature.text =
+            val imperialTemperatureText = "${decimalFormat.format(tempInImperial)}$unitAbbreviation"
+            textView_temperature.text = imperialTemperatureText
+            val imperialFeelsLikeTemperatureText =
                 "Feels Like ${(feelsLikeTemp * 9 / 5) + 32}$unitAbbreviation"
+            textView_feels_like_temperature.text = imperialFeelsLikeTemperatureText
         }
     }
 
@@ -117,33 +121,39 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
     private fun updatePrecipitation(precipitationVolume: Double) {
         val unitAbbreviation = chooseLocalizedUnitAbbreviation("mm", "in")
         if (unitAbbreviation == "mm") {
-            textView_precipitation.text = "Precipitation: $precipitationVolume $unitAbbreviation"
+            val metricPrecipitationText = "Precipitation: $precipitationVolume $unitAbbreviation"
+            textView_precipitation.text = metricPrecipitationText
         } else if (unitAbbreviation == "in") {
             val precipitationVolumeImperial = precipitationVolume / 25.4
-            textView_precipitation.text =
+            val imperialPrecipitationText =
                 "Precipitation: ${decimalFormat.format(precipitationVolumeImperial)} $unitAbbreviation"
+            textView_precipitation.text = imperialPrecipitationText
         }
     }
 
     private fun updateWind(windDirection: String, windSpeed: Double) {
         val unitAbbreviation = chooseLocalizedUnitAbbreviation("kph", "mph")
         if (unitAbbreviation == "kph") {
-            textView_wind.text = "Wind: $windDirection, $windSpeed $unitAbbreviation"
+            val metricWindText = "Wind: $windDirection, $windSpeed $unitAbbreviation"
+            textView_wind.text = metricWindText
         } else if (unitAbbreviation == "mph") {
             val windSpeedImperial = windSpeed / 1.609
-            textView_wind.text =
+            val imperialWindText =
                 "Wind: $windDirection, ${decimalFormat.format(windSpeedImperial)} $unitAbbreviation"
+            textView_wind.text = imperialWindText
         }
     }
 
     private fun updateVisibility(visibilityDistance: Double) {
         val unitAbbreviation = chooseLocalizedUnitAbbreviation("km", "mi.")
         if (unitAbbreviation == "km") {
-            textView_visibility.text = "Visibility: $visibilityDistance $unitAbbreviation"
+            val metricVisibilityText = "Visibility: $visibilityDistance $unitAbbreviation"
+            textView_visibility.text = metricVisibilityText
         } else if (unitAbbreviation == "mi.") {
             val visibilityDistanceImperial = visibilityDistance / 1.609
-            textView_visibility.text =
+            val imperialVisibilityText =
                 "Visibility: ${decimalFormat.format(visibilityDistanceImperial)} $unitAbbreviation"
+            textView_visibility.text = imperialVisibilityText
         }
     }
 
